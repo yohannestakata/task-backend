@@ -1,16 +1,16 @@
 info:
-  name: Task Edit
+  name: Task Edit Status
   type: http
-  seq: 7
+  seq: 6
 
 http:
   method: PATCH
-  url: "{{URL}}/tasks/71d47b49-4d32-4f04-9a71-bdf1ebf45a4f"
+  url: "{{URL}}/tasks/71d47b49-4d32-4f04-9a71-bdf1ebf45a4f/status"
   body:
     type: json
     data: |-
       {
-        "title": "Clean the salon"
+        "status": "IN_PROGRESS"
       }
   auth: inherit
 

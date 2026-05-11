@@ -5,7 +5,11 @@ info:
 
 http:
   method: GET
-  url: "{{URL}}/tasks"
+  url: "{{URL}}/tasks?status=OPEN"
+  params:
+    - name: status
+      value: OPEN
+      type: query
   auth: inherit
 
 settings:

@@ -7,13 +7,29 @@ import { Task, TaskStatus } from './task.model';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { EditTaskDto } from './dto/edit-task.dto';
 import { EditTaskStatusDto } from './dto/edit-task-status.dto';
+import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 
 @Injectable()
 export class TasksService {
   private tasks: Task[] = [];
 
-  public getAllTasks(): Task[] {
-    return this.tasks;
+  public getTasks(filterDto: GetTasksFilterDto): Task[] {
+    let tasks = this.tasks;
+    const { status, search } = filterDto;
+
+    if (status) {
+      tasks = tasks.filter((task) => task.status === status);
+    }
+
+    if (search) {
+      tasks = tasks.filter(
+        (task) =>
+          task.title.toLowerCase().includes(search) ||
+          task?.description.toLowerCase().includes(search),
+      );
+    }
+
+    return tasks;
   }
 
   public getTaskById(id: string): Task {
@@ -71,7 +87,5 @@ export class TasksService {
     this.getTaskById(id);
 
     this.tasks = this.tasks.filter((task) => task.id !== id);
-
-    return;
   }
 }
