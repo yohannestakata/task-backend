@@ -1,0 +1,21 @@
+info:
+  name: Task Edit
+  type: http
+  seq: 7
+
+http:
+  method: PATCH
+  url: "{{URL}}/tasks/9412363a-45c9-4408-b8f2-14f062cafead"
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Clean the salon"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
